@@ -1,146 +1,142 @@
 # Construction Company Website
 
-A modern, responsive website for a construction company built with React, TypeScript, and Tailwind CSS. The site showcases the company's services, projects, and team members with a focus on visual appeal, accessibility, and user experience.
+A modern, responsive website for a construction and plumbing company built with **React, TypeScript, and Tailwind CSS**. The website showcases services, completed projects, team members, and contact information with a strong focus on performance, accessibility, and user experience.
 
-Developed in [Cursor](https://cursor.sh/) with Claude AI assistance.
+**Live Demo:**  
+https://builder-website-example.netlify.app
 
-**Live Site:** [Builder Website Example](https://builder-website-example.netlify.app)
-
-![Construction Company Website](https://images.unsplash.com/photo-1656733911006-fcad49fa0d52?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dfit=crop)
+---
 
 ## Features
 
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Modern UI**: Clean, professional design with smooth animations and transitions
-- **Type-Safe**: Fully typed with TypeScript for improved reliability
-- **Accessible**: ARIA-compliant with semantic HTML and proper keyboard navigation
-- **Before/After Gallery**: Interactive before/after image comparison for renovation projects
-- **Service Showcase**: Detailed presentation of construction and renovation services
-- **Team Profiles**: Section highlighting the company's team members
-- **Testimonials**: Customer reviews and feedback
-- **Contact Form**: Interactive form with animations and validation
-- **Performance Optimized**: Fast loading times with optimized images
-- **SEO Ready**: Proper meta tags and semantic structure
+- Responsive design for mobile, tablet, and desktop
+- Clean and modern user interface
+- Built with TypeScript for better code reliability
+- SEO friendly structure
+- Interactive before/after project gallery
+- Service showcase section
+- Team member profiles
+- Testimonials from clients
+- Contact form for customer inquiries
+- Optimized images for better performance
+- Smooth animations and transitions
+
+---
 
 ## Project Structure
 
 ```
 src/
-├── assets/         # Static assets like icons and images
+├── assets/         # Images and icons
 ├── components/     # Reusable UI components
-├── data/          # Centralized data files (images, projects, services, etc.)
-├── pages/         # Page components for each route
-├── types/         # TypeScript type definitions
-├── __mocks__/     # Mock files for testing
-├── App.tsx        # Main application component
-├── index.tsx      # Application entry point
-└── setupTests.ts  # Test configuration
+├── data/           # Project and service data
+├── pages/          # Website pages
+├── types/          # TypeScript definitions
+├── App.tsx         # Main app component
+├── index.tsx       # Entry point
+└── setupTests.ts   # Test configuration
 ```
 
-## Key Components
+---
 
-- **Button**: Reusable button component with multiple variants and routing capabilities
-- **SEO**: Centralized SEO component for managing meta tags
-- **HomePage**: Landing page with hero section, featured projects, and services
-- **ServicesPage**: Detailed information about offered services
-- **GalleryPage**: Project showcase with before/after image comparison and category filtering
-- **AboutPage**: Company story and team member profiles
-- **ContactPage**: Contact form and information
-- **BeforeAfterModal**: Interactive component for comparing before/after renovation images
+## Key Pages
+
+- **Home** – Landing page with hero section and featured projects  
+- **Services** – Detailed overview of construction and renovation services  
+- **Gallery** – Before and after project comparisons  
+- **About** – Company information and team members  
+- **Contact** – Contact form and company contact details  
+
+---
 
 ## Technologies Used
 
-- **React 18**: Modern UI library for building component-based interfaces
-- **TypeScript**: Type-safe JavaScript for better developer experience
-- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
-- **Framer Motion**: Animation library for smooth transitions and effects
-- **React Router**: For client-side routing
-- **React Helmet Async**: For managing document head and meta tags
-- **Jest & React Testing Library**: For component testing
-- **Heroicons**: SVG icon collection
+- React 18
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- React Router
+- React Helmet Async
+- Jest & React Testing Library
+- Heroicons
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
+Make sure you have installed:
+
 - Node.js (v14 or later)
 - npm or yarn
 
+---
+
 ### Installation
 
-1. Clone the repository
-   ```
-   git clone <repository-url>
-   cd builder-website
-   ```
+Clone the repository:
 
-2. Install dependencies
-   ```
-   npm install
-   ```
+```bash
+git clone https://github.com/codedByShahzad/Builder-Co.git
+```
 
-3. Start the development server
-   ```
-   npm start
-   ```
-   The site will be available at [http://localhost:3000](http://localhost:3000)
+Move into the project directory:
+
+```bash
+cd builder-website
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm start
+```
+
+The website will run at:
+
+```
+http://localhost:3000
+```
+
+---
 
 ## Available Scripts
 
-- **npm start**: Runs the app in development mode
-- **npm test**: Launches the test runner
-- **npm run test:components**: Runs tests for components only
-- **npm run test:pages**: Runs tests for pages only
-- **npm run test:coverage**: Runs tests with coverage report
-- **npm run build**: Builds the app for production
+| Command | Description |
+|--------|-------------|
+| npm start | Runs the app in development mode |
+| npm run build | Builds the project for production |
+| npm test | Runs tests |
+| npm run test:coverage | Runs tests with coverage report |
 
-## Development Status
-
-See [CHANGELOG.md](./CHANGELOG.md) for recent updates and improvements.
-
-### Current Focus Areas
-
-1. **Accessibility**
-   - Enhanced ARIA attributes
-   - Semantic HTML structure
-   - Keyboard navigation improvements
-
-2. **Performance**
-   - Image optimization
-   - Lazy loading implementation
-   - Loading states for interactive elements
-
-3. **SEO**
-   - Meta tags implementation
-   - Structured data
-   - Sitemap generation
+---
 
 ## Deployment
 
-This project is deployed on Netlify at [https://builder-website-example.netlify.app](https://builder-website-example.netlify.app).
+This project can be deployed easily using platforms like:
 
-### Netlify Forms Integration
+- Netlify
+- Vercel
+- GitHub Pages
 
-To do: enable the contact form with Netlify Forms
+Example deployment:  
+https://builder-website-example.netlify.app
 
-1. Add the `data-netlify="true"` attribute to form element
-2. Include a hidden input field with name="form-name" and value equal to form's name
-3. Ensure all form fields have name attributes
-
-Example:
-```jsx
-<form name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact" />
-  {/* Your form fields here */}
-</form>
-```
-
-Netlify will automatically detect and process form submissions without requiring any backend code.
+---
 
 ## Image Credits
 
-All images are sourced from [Unsplash](https://unsplash.com) and are used with appropriate attribution.
+Images used in this project are sourced from **Unsplash**.
+
+---
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the **MIT License**.
