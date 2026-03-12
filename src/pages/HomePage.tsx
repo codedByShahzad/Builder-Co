@@ -1,66 +1,78 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { heroImage, featuredProjectImages, testimonialImages } from '../data/images';
-import { projects } from '../data/projects';
-import { Button } from '../components/Button';
-import SEO from '../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  heroImage,
+  featuredProjectImages,
+  testimonialImages,
+} from "../data/images";
+import { projects } from "../data/projects";
+import { Button } from "../components/Button";
+import SEO from "../components/SEO";
+import { testimonials } from "../data/testimonials";
+import { services } from "../data/services";
 
-const HomePage: React.FC = () => {
-  // Get the first three projects
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+};
+
+const HomePage = () => {
   const featuredProjects = projects.slice(0, 3);
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Quality Construction & Carpentry Services"
-        description="Expert construction and carpentry services with over 30 years of experience. Specializing in renovations, new builds, and custom carpentry in Auckland."
+        description="Expert construction and carpentry services with over 30 years of experience."
         image={heroImage}
       />
 
       <div className="home-page">
-        {/* Hero Section */}
-        <section className="relative bg-stone-900/20 text-white min-h-[80vh] flex items-center" aria-label="Welcome">
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-85"
-            style={{ backgroundImage: `url('${heroImage}')` }}
-            role="img"
-            aria-label="Construction site showcasing our craftsmanship"
-          ></div>
-          <div className="container mx-auto relative z-10 px-4 py-12 md:py-20">
-            <div className="max-w-2xl">
-              <motion.h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+        {/* HERO */}
+        <section className="relative min-h-[85vh] flex items-center text-white">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src={heroImage}
+              alt="Construction craftsmanship"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+
+          {/* Hero Content */}
+          <div className="relative z-10 container py-20">
+            <div className="max-w-2xl text-left">
+              <motion.h1
+                {...fadeInUp}
                 transition={{ duration: 0.6 }}
+                className="text-4xl sm:text-5xl text-white lg:text-6xl  font-bold leading-tight mb-6"
               >
-                Quality Craftsmanship & Construction Excellence
+                Quality Craftsmanship &
+                <span className="text-white"> Construction Excellence</span>
               </motion.h1>
-              <motion.p 
-                className="text-lg sm:text-xl mb-8 max-w-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+
+              <motion.p
+                {...fadeInUp}
+                transition={{ delay: 0.2 }}
+                className="text-lg sm:text-xl text-gray-200 mb-8"
               >
-                Bringing over 30 years of experience to every project, big or small.
+                Bringing over 30 years of experience to every project — from
+                renovations to custom construction.
               </motion.p>
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 max-w-sm sm:max-w-none"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+
+              <motion.div
+                {...fadeInUp}
+                transition={{ delay: 0.4 }}
+                className="flex flex-wrap gap-4"
               >
-                <Button 
-                  variant="hero-primary"
-                  to="/contact"
-                >
-                  Request a Quote
+                <Button variant="hero-primary" to="/contact">
+                  Request Quote
                 </Button>
-                <Button 
-                  variant="hero-secondary"
-                  to="/gallery"
-                >
+
+                <Button variant="hero-secondary" to="/gallery">
                   View Our Work
                 </Button>
               </motion.div>
@@ -68,112 +80,140 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* Services Overview */}
-        <section className="section bg-white" aria-labelledby="services-title">
-          <div className="container mx-auto">
-            <h2 id="services-title" className="section-title">Our Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
+        {/* SERVICES */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.h2
+              {...fadeInUp}
+              className="text-3xl md:text-4xl font-bold text-center mb-16"
+            >
+              Our Services
+            </motion.h2>
+
+            <div className="grid md:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <motion.div
-                  key={index}
-                  className="bg-background p-6 rounded-lg shadow-md"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  role="listitem"
+                  key={service.title}
+                  {...fadeInUp}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition"
                 >
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4" aria-hidden="true">
-                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      {service.icon}
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
+                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+
+                  <ul className="space-y-1 text-sm text-gray-500">
+                    {service.features.slice(0, 3).map((feature, i) => (
+                      <li key={i}>• {feature}</li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
             </div>
+
             <div className="text-center mt-12">
-              <Button variant="primary" to="/services" aria-label="View all our construction and carpentry services">
+              <Button variant="primary" to="/services">
                 View All Services
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Featured Projects */}
-        <section className="section bg-accent bg-opacity-30" aria-labelledby="projects-title">
-          <div className="container mx-auto">
-            <h2 id="projects-title" className="section-title">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+        {/* PROJECTS */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.h2
+              {...fadeInUp}
+              className="text-3xl md:text-4xl font-bold text-center mb-16"
+            >
+              Featured Projects
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProjects.map((project, index) => (
                 <motion.article
                   key={project.id}
-                  className="bg-white rounded-lg overflow-hidden shadow-md"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  role="listitem"
+                  {...fadeInUp}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white rounded-xl overflow-hidden shadow hover:shadow-xl transition"
                 >
-                  <div 
-                    className="h-48 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${featuredProjectImages[index]}')` }}
-                    role="img"
-                    aria-label={`After photo of ${project.title}`}
-                  ></div>
+                  <img
+                    src={featuredProjectImages[index]}
+                    alt={project.title}
+                    className="h-56 w-full object-cover"
+                  />
+
                   <div className="p-6">
                     <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-4">{project.shortDescription}</p>
-                    <Link 
-                      to="/gallery" 
+
+                    <p className="text-gray-600 mb-4">
+                      {project.shortDescription}
+                    </p>
+
+                    <Link
+                      to="/gallery"
                       className="text-primary font-medium hover:underline"
-                      aria-label={`View details of ${project.title}`}
                     >
-                      View Details
+                      View Details →
                     </Link>
                   </div>
                 </motion.article>
               ))}
             </div>
+
             <div className="text-center mt-12">
-              <Button variant="primary" to="/gallery" aria-label="View our complete project gallery">
+              <Button variant="primary" to="/gallery">
                 View All Projects
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="section bg-white">
-          <div className="container mx-auto">
-            <h2 className="section-title">What Our Clients Say</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* TESTIMONIALS */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.h2
+              {...fadeInUp}
+              className="text-3xl md:text-4xl font-bold text-center mb-16"
+            >
+              What Our Clients Say
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 gap-10">
               {testimonials.map((testimonial, index) => (
                 <motion.div
-                  key={index}
-                  className="bg-background p-6 rounded-lg shadow-md"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  key={testimonial.name}
+                  {...fadeInUp}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-gray-50 p-8 rounded-xl shadow-sm"
                 >
                   <div className="flex items-center mb-4">
-                    <div 
-                      className="w-12 h-12 rounded-full flex-shrink-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url('${testimonialImages[index % testimonialImages.length]}')` }}
-                    ></div>
+                    <img
+                      src={testimonialImages[index % testimonialImages.length]}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+
                     <div className="ml-4">
                       <h4 className="font-bold">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-500">{testimonial.location}</p>
+
+                      <p className="text-sm text-gray-500">
+                        {testimonial.location}
+                      </p>
                     </div>
                   </div>
+
                   <p className="text-gray-600 italic">"{testimonial.text}"</p>
-                  <div className="mt-4 flex">
+
+                  <div className="flex mt-4">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
-                        className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                        className={`w-5 h-5 ${
+                          i < testimonial.rating
+                            ? "text-yellow-400"
+                            : "text-gray-300"
+                        }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -187,13 +227,18 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-primary text-white">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Start Your Project?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Contact us today for a free consultation and quote. We're ready to bring your vision to life.
+        {/* CTA */}
+        <section className="py-20 bg-primary text-white text-center">
+          <div className="max-w-3xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl text-white font-bold mb-6">
+              Ready to Start Your Project?
+            </h2>
+
+            <p className="text-lg mb-8 text-white/90">
+              Contact us today for a free consultation and quote. Let's bring
+              your vision to life.
             </p>
+
             <Button variant="white" to="/contact">
               Get in Touch
             </Button>
@@ -203,51 +248,5 @@ const HomePage: React.FC = () => {
     </>
   );
 };
-
-// Sample data
-const services = [
-  {
-    title: 'Custom Construction',
-    description: 'Full-service construction from design to completion for residential and commercial projects.',
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    )
-  },
-  {
-    title: 'Renovations & Extensions',
-    description: 'Upgrade or expand your existing space with high-quality renovation services.',
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16V4a2 2 0 012-2h4a2 2 0 012 2v12m4 0V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8m16 0H4m6 0v4m4-4v4" />
-      </svg>
-    )
-  },
-  {
-    title: 'Bespoke Furniture',
-    description: 'Handcrafted, custom furniture designed to fit your space and style.',
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h11M9 21V10m-6 11h18m-6 0V10m6 0h-6m0 0V3" />
-      </svg>
-    )
-  }
-];
-
-const testimonials = [
-  {
-    name: 'Sarah Johnson',
-    location: 'Hometown',
-    text: 'Builder Co. transformed our outdated kitchen into a beautiful, functional space. Professional, on-time, and within budget. We couldn\'t be happier!',
-    rating: 5
-  },
-  {
-    name: 'Mark Williams',
-    location: 'Neighboring City',
-    text: 'We hired Builder Co. for our home addition, and they exceeded all expectations. Their attention to detail and craftsmanship is outstanding.',
-    rating: 5
-  },
-];
 
 export default HomePage;

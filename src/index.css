@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  @apply px-4 mx-auto;
+  @apply px-4 sm:px-6 lg:px-16 mx-auto;
 }
 
 @layer components {
